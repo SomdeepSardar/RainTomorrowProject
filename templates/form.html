@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rain Tomorrow Prediction Project</title>
+  <style>
+    /* Base styles */
+    h1 {
+      font-size: 2em;
+      color: #7a5798;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    form {
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      /* Adjust width as needed */
+      max-width: 500px;
+      margin: 0 auto; /* Center the form horizontally */
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block; /* Make labels appear on separate lines */
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #12d09ae0;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    <h1>Rain Tomorrow Prediction Project</h1>
+  <form action="{{url_for('predict_datapoint')}}" method="POST">
+
+      <div class="form-group">
+          <label for="MinTemp">MinTemp:</label>
+          <input type="text" id="MinTemp" name="MinTemp" placeholder="Enter MinTemp value (float)">
+      </div>
+
+      <div class="form-group">
+          <label for="MaxTemp">MaxTemp:</label>
+          <input type="text" id="MaxTemp" name="MaxTemp" placeholder="Enter MaxTemp value (float)">
+      </div>
+
+      <div class="form-group">  
+          <label for="Rainfall">Rainfall:</label>
+          <input type="text" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall value (float)">
+      </div>
+
+      <div class="form-group">
+          <label for="Evaporation">Evaporation:</label>
+          <input type="text" id="Evaporation" name="Evaporation" placeholder="Enter Evaporation value (float)">
+      </div>
+    
+      <div class="form-group">
+          <label for="Sunshine">Sunshine:</label>
+          <input type="text" id="Sunshine" name="Sunshine" placeholder="Enter Sunshine value (float)">
+      </div>
+    
+      <div class="form-group">
+          <label for="WindGustSpeed">WindGustSpeed:</label>
+          <input type="text" id="WindGustSpeed" name="WindGustSpeed" placeholder="Enter WindGustSpeed value (float)">
+      </div>         
+
+      <div class="form-group">
+          <label for="WindSpeed9am">WindSpeed9am:</label>
+          <input type="text" id="WindSpeed9am" name="WindSpeed9am" placeholder="Enter WindSpeed9am value (float)">
+      </div>    
+
+      <div class="form-group">
+          <label for="WindSpeed3pm">WindSpeed3pm:</label>
+          <input type="text" id="WindSpeed3pm" name="WindSpeed3pm" placeholder="Enter WindSpeed3pm value (float)">
+      </div>    
+
+      <div class="form-group">
+          <label for="Humidity9am">Humidity9am:</label>
+          <input type="text" id="Humidity9am" name="Humidity9am" placeholder="Enter Humidity9am value (float)">
+      </div>    
+
+    <div class="form-group">
+        <label for="Humidity3pm">Humidity3pm:</label>
+        <input type="text" id="Humidity3pm" name="Humidity3pm" placeholder="Enter Humidity3pm value (float)">
+    </div>    
+
+    <div class="form-group">
+        <label for="Pressure9am">Pressure9am:</label>
+        <input type="text" id="Pressure9am" name="Pressure9am" placeholder="Enter Pressure9am value (float)">
+    </div>
+    
+    <div class="form-group">
+        <label for="Cloud9am">Cloud9am:</label>
+        <input type="text" id="Cloud9am" name="Cloud9am" placeholder="Enter Cloud9am value (float)">
+    </div>
+
+    <div class="form-group">
+        <label for="Cloud3pm">Cloud3pm:</label>
+        <input type="text" id="Cloud3pm" name="Cloud3pm" placeholder="Enter Cloud3pm value (float)">
+    </div>
+  
+  <div class="form-group">
+    <label for="Location">Location:</label>
+    <select id="Location" name="Location">
+      <option value= 1 >Portland</option>
+      <option value= 2>Cairns</option>
+      <option value= 3>Walpole</option>
+      <option value=4>Dartmoor</option>
+      <option value=5>MountGambier</option>
+      <option value=6>NorfolkIsland</option>
+      <option value=7>Albany</option>
+      <option value=8>Witchcliffe</option>
+      <option value=9>CoffsHarbour</option>
+      <option value=10>Sydney</option>
+      <option value=11>Darwin</option>
+      <option value=12>MountGinini</option>
+      <option value=13>NorahHead</option>
+      <option value=14>Ballarat</option>
+      <option value=15>GoldCoast</option>
+      <option value=16>SydneyAirport</option>
+      <option value=17>Hobart</option>
+      <option value=18>Watsonia</option>
+      <option value=19>Newcastle</option>
+      <option value=20>Wollongong</option>
+      <option value=21>Brisbane</option>
+      <option value=22>Williamtown</option>
+      <option value=23>Launceston</option>
+      <option value=24>Adelaide</option>
+      <option value=25>MelbourneAirport</option>
+      <option value=26>Perth</option>
+      <option value=27>Sale</option>
+      <option value=28>Melbourne</option>
+      <option value=29>Canberra</option>
+      <option value=30>Albury</option>
+      <option value=31>Penrith</option>
+      <option value=32>Nuriootpa</option>
+      <option value=33>BadgerysCreek</option>
+      <option value=34>Tuggeranong</option>
+      <option value=35>PerthAirport</option>
+      <option value=36>Bendigo</option>
+      <option value=37>Richmond</option>
+      <option value=38>WaggaWagga</option>
+      <option value=39>Townsville</option>
+      <option value=40>PearceRAAF</option>
+      <option value=41>SalmonGums</option>
+      <option value=42>Moree</option>
+      <option value=43>Cobar</option>
+      <option value=44>Mildura</option>
+      <option value=45>Katherine</option>
+      <option value=46>AliceSprings</option>
+      <option value=47>Nhil</option>
+      <option value=48>Woomera</option>
+      <option value=49>Uluru</option>
+    </select>
+  </div> 
+
+
+
+  <div class="form-group">
+    <label for="WindGustDir">WindGustDir:</label>
+    <select id="WindGustDir" name="WindGustDir">
+      <option value=0>NNW</option>
+      <option value=1>NW</option>
+      <option value=2>WNW</option>
+      <option value=3>N</option>
+      <option value=4>W</option>
+      <option value=5>WSW</option>
+      <option value=6>NNE</option>
+      <option value=7>S</option>
+      <option value=8>SSW</option>
+      <option value=9>SW</option>
+      <option value=10>SSE</option>
+      <option value=11>NE</option>
+      <option value=12>SE</option>
+      <option value=13>ESE</option>
+      <option value=14>ENE</option>
+      <option value=15>E</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="WindDir9am">WindDir9am:</label>
+    <select id="WindDir9am" name="WindDir9am">
+      <option value=0>NNW</option>
+      <option value=1>N</option>
+      <option value=2>NW</option>
+      <option value=3>NNE</option>
+      <option value=4>WWW</option>
+      <option value=5>W</option>
+      <option value=6>WSW</option>
+      <option value=7>SW</option>
+      <option value=8>SSW</option>
+      <option value=9>NE</option>
+      <option value=10>S</option>
+      <option value=11>SSE</option>
+      <option value=12>ENE</option>
+      <option value=13>SE</option>
+      <option value=14>ESE</option>
+      <option value=15>E</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="WindDir3pm">WindDir3pm:</label>
+    <select id="WindDir3pm" name="WindDir3pm">
+      <option value=0>NW</option>
+      <option value=1>NNW</option>
+      <option value=2>N</option>
+      <option value=3>WNW</option>
+      <option value=4>W</option>
+      <option value=5>NNE</option>
+      <option value=6>WSW</option>
+      <option value=7>SSW</option>
+      <option value=8>S</option>
+      <option value=9>SW</option>
+      <option value=10>SE</option>
+      <option value=11>NE</option>
+      <option value=12>SSE</option>
+      <option value=13>ENE</option>
+      <option value=14>E</option>
+      <option value=15>ESE</option>
+    </select>
+  </div>
+
+  <div style="clear:both;"></div>
+    <input type="submit" value="Submit">
+  </form>
+ </body>
+</html>
