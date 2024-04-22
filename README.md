@@ -5,9 +5,11 @@ Kindly follow these steps to run the project:-
 ## Step1: Download the project folder on to your system
 
 ## Step2: Create a new environment
-''' conda create -p venv python==3.10
+'''
+conda create -p venv python==3.10
 
-conda activate venv '''
+conda activate venv 
+'''
 
 ## Step3: Install required packages
 '''pip install -r requirements.txt'''
