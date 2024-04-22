@@ -16,7 +16,8 @@ conda activate venv
 
 ## Step4: Create a .env file in the directory and save your database credentials
 
-## Step5: In the utils file, modify the table_name in ```Select * from [table_name]```
+## Step5: In the utils file, modify the table_name in 
+```Select * from [table_name]```
 
 ## Step6: Uncomment line number 33 and 72 and comment out line no 34 in the data_ingestion.py file inside components folder inside the src folder
 
