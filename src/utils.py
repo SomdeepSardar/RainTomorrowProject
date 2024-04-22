@@ -4,11 +4,12 @@ from src.exception import CustomException
 from src.logger import logging
 import pandas as pd
 from dotenv import load_dotenv
+
 from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
 import pymysql
 
 import pickle
-import numpy as np
+
 
 load_dotenv()
 
@@ -16,7 +17,6 @@ host=os.getenv("host")
 user=os.getenv("user")
 password=os.getenv("password")
 db=os.getenv('db')
-
 
 
 def read_sql_data():
@@ -36,10 +36,8 @@ def read_sql_data():
 
         return df
 
-
-
-    except Exception as ex:
-        raise CustomException(ex)
+    except Exception as e:
+        raise CustomException(e, sys)
     
 def save_object(file_path, obj):
     try:
