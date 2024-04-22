@@ -14,7 +14,7 @@ def get_requirements(file_path:str)->List[str]:
     return requirements
 
 setup(
-    name= "PipeLineProject",
+    name= "RainTomorrowPipelineProject",
     version= "0.1.0",
     author= "Somdeep Sardar",
     author_email= "sardarsomdeep123@gmail.com",
