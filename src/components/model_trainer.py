@@ -7,6 +7,7 @@ from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
+from imblearn.ensemble import BalancedBaggingClassifier
 
 from src.utils import save_object, model_evaluation, model_performance
 
@@ -23,12 +24,6 @@ class ModelTrainer:
     def __init__(self):
         self.model_trainer_config=ModelTrainerConfig()
 
-    # def model_evaluation(self, true, predicted):
-    #     c_mat = confusion_matrix(true, predicted)
-    #     a_score = accuracy_score(true, predicted)
-    #     c_report = classification_report(true, predicted)
-    #     return c_mat, a_score, c_report
-    
     logging.info("model_evaluation func in model_trainer executed")
 
     def initiate_model_trainer(self,train_array,test_array):
@@ -50,7 +45,11 @@ class ModelTrainer:
             models = {
                 'LogisticRegression': LogisticRegression(),
                 'KNeighbours': KNeighborsClassifier(n_neighbors=8),
-                'RandomForest': RandomForestClassifier()
+                'RandomForest': RandomForestClassifier(random_state=42),
+                'BalancedBaggingClassifier': BalancedBaggingClassifier(RandomForestClassifier(random_state=42),
+                                                        sampling_strategy='auto',  # You can adjust this parameter
+                                                        replacement=False,  # Whether to sample with or without replacement
+                                                        random_state=42)
             }
 
             model_report: dict = model_performance(X_train, y_train, X_test, y_test, models)
